@@ -1,12 +1,14 @@
 // Import base vars
 // @import "./vars/vars";
 // Foundation styles for base components and media queries
-// @import "./base";
+@import "./base";
 
 // Internal Component styles
 // @import "./vars/colors";
 // @import "./vars/tabColors";
-// @import "./components/logo";
+@import "./components/projectDiv";
+@import "./components/todoDiv";
+@import "./components/toolbar";
 // @import "./components/hero";
 // @import "./components/footer";
 
