@@ -1,13 +1,13 @@
 "use strict";
 
-import buildToolBar from '../components/buildToolBar';
+import renderToolBar from './renderToolBar';
 
 const renderTodoBar = (body) => {
   // Build right bar structure
   let rightBar = document.createElement('div');
   rightBar.setAttribute('class', 'right-bar');
 
-  let toolbarDiv = buildToolBar();
+  let toolbarDiv = renderToolBar();
   // Will put below in function above when done
 
   // Build scrollable section to hold todo items

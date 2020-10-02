@@ -1,6 +1,7 @@
 "use strict";
 // Import methods/functionality
 import renderPage from './render/renderPage';
+import renderProjects from './render/renderProjects';
 
 // Import styles
 import './style/reset.scss';
@@ -11,12 +12,12 @@ function index() {
 	// Initial page structure load
 	renderPage();
 
-	// Check for stored data, and render if available --TODD
-	// If no stored data, render a "Welcome Page todo/project"
-	// if (storedData())
-	//  renderPersonProjects/Todos
-	// else
-	// renderDefaultProject/Todo
+	renderProjects();
+
+	// renderTodos(); //--TODO!
+
+	// Select first project in list of projects to display as default
+	// Selecting this tab will clear todo list and build our todo objects for this proj
 
 }
 
