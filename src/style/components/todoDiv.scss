@@ -6,11 +6,41 @@
   border-left: 1px solid black;
   border-right: 1px solid black;
   border-top: 1px solid black;
+
 }
 
-.todo-div {
+.todo-tab {
+  flex-direction: column;
   border: 1px solid black;
+  border-radius: .5em;
+  padding: 1%;
   width: 300px;
   height: 400px;
-  background-color: white;
+  margin: 1% 1%;
+  h1 {
+    font-size: 18px;
+  }
+  h2 {
+    font-size: 14px;
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 1pt purple;
+    border-color: purple;
+  }
+
+}
+.todo-due {
+  font-size: 12px;
+  color: grey;
+}
+.todo-created {
+  font-size: 12px;
+  color: grey;
+}
+
+@media only screen and (max-width: 430px) {
+.todo-tab {
+    width: 92%;
+  }
 }

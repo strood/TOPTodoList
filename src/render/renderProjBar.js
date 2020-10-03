@@ -16,12 +16,6 @@ const renderProjBar = (body) => {
   let projBar = document.createElement('div');
   projBar.setAttribute('class', 'proj-bar scroll');
 
-  // Build new proj button
-  let addButton = document.createElement('div');
-  addButton.setAttribute('class', 'newProj-button');
-  addButton.innerHTML = "+";
-
-  projBar.appendChild(addButton);
 
   // Put it together into left bar and append to body
   leftBar.appendChild(logoDiv);

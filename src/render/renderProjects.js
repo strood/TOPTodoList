@@ -19,18 +19,24 @@ const renderProjects = () => {
     buildDemoProject();
   }
 
-  console.log(storedProj);
-  // If there is stored projects (or we just made some, render them to page)
+  // Add projects to proj-bar
   const projBar = document.querySelector('.proj-bar');
+
   for (var i = 0; i < storedProj.length; i++) {
+    // Build new tab proj-tab, insert into projBar before add button
     let tab = buildProjectTab(storedProj[i]);
-    projBar.insertBefore(tab, projBar.children[0]);
+    projBar.appendChild(tab);
   }
+  // Build new proj button
+  let addButton = document.createElement('div');
+  addButton.setAttribute('class', 'newProj-button');
+  addButton.innerHTML = "+";
 
-
-  // ------------------------------------------------------------------
+  projBar.appendChild(addButton);
 
 }
+
+// Check for stored projects in localstorage, return results
 const storedProjects = () => {
   return JSONfn.parse(localStorage.getItem("ScribbleProjects"));
 }

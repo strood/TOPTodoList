@@ -12,13 +12,13 @@ function index() {
 	// Initial page structure load
 	renderPage();
 
+	// Render projects
 	renderProjects();
 
-	// renderTodos(); //--TODO!
-
-	// Select first project in list of projects to display as default
-	// Selecting this tab will clear todo list and build our todo objects for this proj
-
+	// Select first project by default to complete page load. Click will load the
+	// todos for the given project
+	let projBar = document.querySelector('.proj-bar');
+	projBar.children[0].click();
 }
 
 document.onload = index();
