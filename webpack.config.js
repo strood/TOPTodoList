@@ -94,7 +94,7 @@ module.exports = {
       },
       {
         // file loader for xml files to be added/loaded
-        test: /\.xml$/ ,
+        test: /\.xml$/,
         use: [
           'xml-loader',
         ],
