@@ -1,24 +1,23 @@
-import JSONfn from 'json-fn';
-import buildDemoProject from '../builders/buildDemoProject';
+import buildDemoSetup from '../builders/buildDemoSetup';
 import buildProjectTab from '../builders/buildProjectTab';
-import saveProjects from '../actions/saveProjects';
 
-// Check for stored projects in localstorage, return results
-const storedProjects = () => JSONfn.parse(localStorage.getItem('ScribbleProjects'));
+// Grab stored projects from localStorage
+const storedProjects = () => JSON.parse(localStorage.getItem('ScribblesProjects'));
 
 const renderProjects = () => {
   // Check for stored data, and render if available
   // If no stored data, add a  "Welcome Page todo/project" to localstorage
-  const storedProj = storedProjects();
+  const storedProjs = storedProjects();
   const projBar = document.querySelector('.proj-bar');
 
-  if (!storedProj) {
-    buildDemoProject(projBar);
+  if (!storedProjs) {
+    buildDemoSetup();
+    renderProjects();
   } else {
     // Add projects to proj-bar
-    for (let i = 0; i < storedProj.length; i += 1) {
+    for (let i = 0; i < storedProjs.length; i += 1) {
       // Build new tab proj-tab, insert into projBar before add button
-      const tab = buildProjectTab(storedProj[i]);
+      const tab = buildProjectTab(storedProjs[i]);
       projBar.appendChild(tab);
     }
   }
@@ -27,9 +26,10 @@ const renderProjects = () => {
   const addButton = document.createElement('div');
   addButton.setAttribute('class', 'newProj-button');
   addButton.innerHTML = '+';
-
   projBar.appendChild(addButton);
-  saveProjects();
+
+  // Activate top project to trigger todoRender
+  projBar.children[0].click();
 };
 
 export default renderProjects;
