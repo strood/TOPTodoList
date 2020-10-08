@@ -1,4 +1,5 @@
 import buildTodoTab from '../builders/buildTodoTab';
+
 // Clear all children from given todos div
 const clearTodos = (todos) => {
   while (todos.firstChild) {
@@ -6,6 +7,7 @@ const clearTodos = (todos) => {
   }
 };
 
+// Render todos on page in todosBar
 const renderTodos = (project) => {
   // grab todo-bar
   const todoBar = document.querySelector('.todo-bar');
@@ -17,6 +19,10 @@ const renderTodos = (project) => {
   for (let i = 0; i < project.todos.length; i += 1) {
     const tab = buildTodoTab(project.todos[i]);
     todoBar.appendChild(tab);
+  }
+
+  if (!todoBar.children[0]) {
+    todoBar.innerHTML = 'No todos for this project yet, add one with the "+" above';
   }
 };
 

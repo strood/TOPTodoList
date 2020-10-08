@@ -6,6 +6,7 @@ const buildProjectTab = (project) => {
   holder.setAttribute('class', 'proj-tab');
   holder.addEventListener('click', () => {
     renderTodos(project);
+    window.ACTIVE_PROJECT = project;
   });
   return holder;
 };

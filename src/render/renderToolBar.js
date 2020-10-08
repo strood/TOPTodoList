@@ -1,3 +1,8 @@
+import {
+  renderTodoModal,
+  displayTodoModal,
+} from './renderModals';
+
 const buildToolBar = () => {
   // Build toolbar structure
   const toolbarDiv = document.createElement('div');
@@ -7,6 +12,8 @@ const buildToolBar = () => {
   const addButton = document.createElement('div');
   addButton.setAttribute('class', 'toolbar-button');
   addButton.innerHTML = '+';
+  renderTodoModal()
+  addButton.addEventListener('click', displayTodoModal);
   const orderDiv = document.createElement('div');
   orderDiv.setAttribute('class', 'order-div');
 
