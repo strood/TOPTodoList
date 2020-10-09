@@ -1,4 +1,4 @@
-import { format, add } from 'date-fns';
+import { format } from 'date-fns';
 
 function Todo(title, description, priority, notes, due, tags = []) {
   this.id = Math.random().toString(36).slice(2); // Random Todo id
@@ -6,9 +6,9 @@ function Todo(title, description, priority, notes, due, tags = []) {
   this.description = description; // str
   this.priority = priority; // 0 -low, 1 - med, 2 - high
   this.notes = notes; // string
-  this.due = format(add(new Date(due), { second: 1 }), 'yyyy-MM-dd-HH:mm:ss'); // date
+  this.due = format(new Date(due), 'yyyy-MM-dd'); // date
   this.tags = tags; // list of strings(tagnames)
   // auto set as creation time of object, add one second to fix formatting
-  this.created = format(add(Date.now(), { second: 1 }), 'yyyy-MM-dd-HH:mm:ss');
+  this.created = format(Date.now(), 'yyyy-MM-dd');
 }
 export default Todo;

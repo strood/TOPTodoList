@@ -1,6 +1,5 @@
 import buildDemoSetup from '../builders/buildDemoSetup';
 import buildProjectTab from '../builders/buildProjectTab';
-import renderTodos from './renderTodos';
 import {
   renderProjectModal,
   displayProjectModal,

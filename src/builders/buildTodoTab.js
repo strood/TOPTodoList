@@ -1,4 +1,6 @@
 const buildTodoTab = (todo) => {
+  const loadedTodo = JSON.parse(localStorage.getItem(todo));
+
   // Todo tab
   const tab = document.createElement('div');
   tab.setAttribute('class', 'todo-tab');
@@ -6,42 +8,46 @@ const buildTodoTab = (todo) => {
   // title
   const todoTitle = document.createElement('h1');
   todoTitle.setAttribute('class', 'todo-title');
-  todoTitle.innerHTML = todo.title;
+  todoTitle.innerHTML = loadedTodo.title;
 
   // description
   const todoDescription = document.createElement('h2');
   todoDescription.setAttribute('class', 'todo-description');
-  todoDescription.innerHTML = todo.description;
+  todoDescription.innerHTML = loadedTodo.description;
 
   // priority
   const todoPriority = document.createElement('h2');
   todoPriority.setAttribute('class', 'todo-priority');
-  todoPriority.innerHTML = todo.priority;
+  todoPriority.innerHTML = loadedTodo.priority;
 
   // notes
   const todoNotes = document.createElement('p');
   todoNotes.setAttribute('class', 'todo-notes');
-  todoNotes.innerHTML = todo.notes;
+  todoNotes.innerHTML = loadedTodo.notes;
 
   // tags
   const todoTags = document.createElement('h2');
   todoTags.setAttribute('class', 'todo-tags');
-  todoTags.innerHTML = todo.tags;
+  todoTags.innerHTML = loadedTodo.tags;
 
   // due
   const todoDue = document.createElement('h2');
   todoDue.setAttribute('class', 'todo-due');
   // Grab date and make look nice before setting to p
-  let dueDate = Date(todo.due).split(' ');
-  dueDate = dueDate.slice(0, 5).join(' ');
+  const loadedTodoDue = loadedTodo.due.split('-').join(' ');
+  let dueDate = new Date(loadedTodoDue);
+  dueDate = dueDate.toString().split(' ');
+  dueDate = dueDate.slice(0, 3).join(' ');
   todoDue.innerHTML = `Due: ${dueDate}`;
 
   // created
   const todoCreated = document.createElement('p');
   todoCreated.setAttribute('class', 'todo-created');
   // Grab date and make look nice before setting to p
-  let createdDate = Date(todo.created).split(' ');
-  createdDate = createdDate.slice(0, 5).join(' ');
+  const loadedTodoCreated = loadedTodo.created.split('-').join(' ');
+  let createdDate = new Date(loadedTodoCreated);
+  createdDate = createdDate.toString().split(' ');
+  createdDate = createdDate.slice(0, 3).join(' ');
   todoCreated.innerHTML = `Created: ${createdDate}`;
 
   // compile components into tab

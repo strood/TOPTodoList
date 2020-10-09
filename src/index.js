@@ -9,7 +9,7 @@ import './style/style.scss';
 
 // This is initial entry point into app. Everything starts below.
 function index() {
-  let ACTIVE_PROJECT = null;
+  const ACTIVE_PROJECT = null;
   // Initial page structure load
   renderPage();
 
