@@ -9,6 +9,7 @@ const clearTodos = (todos) => {
 
 // Render todos on page in todosBar
 const renderTodos = (project) => {
+  console.log(project);
   // grab todo-bar
   const todoBar = document.querySelector('.todo-bar');
 

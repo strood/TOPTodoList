@@ -35,12 +35,8 @@ const renderProjects = () => {
   addButton.addEventListener('click', displayProjectModal);
   projBar.appendChild(addButton);
 
-  if (window.ACTIVE_PROJECT) {
-    renderTodos(window.ACTIVE_PROJECT);
-  } else {
-    // Activate top project to trigger renderTodos
-    projBar.children[0].click();
-  }
+  // Activate top project to trigger renderTodos
+  projBar.children[0].click();
 };
 
 export default renderProjects;

@@ -9,20 +9,25 @@ import './style/style.scss';
 
 // This is initial entry point into app. Everything starts below.
 function index() {
+  let ACTIVE_PROJECT = null;
   // Initial page structure load
   renderPage();
 
   // Check localStorage for saved projects/
-  const scribProjs = JSON.parse(localStorage.getItem('ScribblesProjects'));
+  let scribProjs = JSON.parse(localStorage.getItem('ScribblesProjects'));
 
   if (!scribProjs) {
     // If no projects in localStorage:
     // build demo setup
     buildDemoSetup();
+    scribProjs = JSON.parse(localStorage.getItem('ScribblesProjects'));
+    // Render Projects
+    renderProjects();
+  } else {
+    // Render Projects
+    // window.ACTIVE_PROJECT = scribProjs[0];
+    renderProjects();
   }
-  const ACTIVE_PROJECT = JSON.parse(localStorage.getItem('ScribblesProjects'))[0];
-  // Render Projects
-  renderProjects();
 }
 
 document.onload = index();
