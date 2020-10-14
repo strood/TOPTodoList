@@ -6,7 +6,7 @@ function Todo(title, description, priority, notes, due, tags = []) {
   this.description = description; // str
   this.priority = priority; // 0 -low, 1 - med, 2 - high
   this.notes = notes; // string
-  this.due = format(new Date(due), 'yyyy-MM-dd'); // date
+  this.due = format(new Date(due.split('-').join(' ')), 'yyyy-MM-dd'); // date
   this.tags = tags; // list of strings(tagnames)
   // auto set as creation time of object, add one second to fix formatting
   this.created = format(Date.now(), 'yyyy-MM-dd');

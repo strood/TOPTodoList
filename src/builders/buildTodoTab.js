@@ -1,3 +1,5 @@
+import { isFuture } from 'date-fns';
+
 const buildTodoTab = (todo) => {
   const loadedTodo = JSON.parse(localStorage.getItem(todo));
 
@@ -18,7 +20,21 @@ const buildTodoTab = (todo) => {
   // priority
   const todoPriority = document.createElement('h2');
   todoPriority.setAttribute('class', 'todo-priority');
-  todoPriority.innerHTML = loadedTodo.priority;
+  let prioText = '';
+  switch (loadedTodo.priority) {
+    case '0':
+      prioText = 'Low';
+      break;
+    case '1':
+      prioText = 'Med';
+      break;
+    case '2':
+      prioText = 'High';
+      break;
+    default:
+      prioText = 'Low';
+  }
+  todoPriority.innerHTML = prioText;
 
   // notes
   const todoNotes = document.createElement('p');
@@ -35,10 +51,17 @@ const buildTodoTab = (todo) => {
   todoDue.setAttribute('class', 'todo-due');
   // Grab date and make look nice before setting to p
   const loadedTodoDue = loadedTodo.due.split('-').join(' ');
-  let dueDate = new Date(loadedTodoDue);
-  dueDate = dueDate.toString().split(' ');
-  dueDate = dueDate.slice(0, 3).join(' ');
-  todoDue.innerHTML = `Due: ${dueDate}`;
+  const dueDate = new Date(loadedTodoDue);
+  let styleDueDate = dueDate.toString().split(' ');
+  styleDueDate = styleDueDate.slice(0, 4).join(' ');
+  todoDue.innerHTML = `Due: ${styleDueDate}`;
+  // Do an overdue check, make changes if todo is overdue
+
+  if (!isFuture(dueDate)) {
+    tab.style.border = '1px solid red';
+    const overdue = '- OVERDUE!';
+    todoDue.innerHTML = `Due: ${styleDueDate} ${overdue}`;
+  }
 
   // created
   const todoCreated = document.createElement('p');
@@ -47,12 +70,13 @@ const buildTodoTab = (todo) => {
   const loadedTodoCreated = loadedTodo.created.split('-').join(' ');
   let createdDate = new Date(loadedTodoCreated);
   createdDate = createdDate.toString().split(' ');
-  createdDate = createdDate.slice(0, 3).join(' ');
+  createdDate = createdDate.slice(0, 4).join(' ');
   todoCreated.innerHTML = `Created: ${createdDate}`;
 
   // compile components into tab
   tab.appendChild(todoTitle);
   tab.appendChild(todoDescription);
+  tab.appendChild(todoPriority);
   tab.appendChild(todoNotes);
   tab.appendChild(todoTags);
   tab.appendChild(todoDue);

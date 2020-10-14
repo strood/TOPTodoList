@@ -14,6 +14,12 @@ div {
   display: flex;
 }
 
+input,
+textarea,
+button,
+div {
+  transition: 0.5s all linear;
+}
 .right-bar {
   flex: 8 1;
   height: 100%;

@@ -63,11 +63,13 @@ const renderProjectModal = () => {
   titleLabel.innerHTML = 'Title:';
   const titleInput = document.createElement('input');
   titleInput.setAttribute('id', 'title-input');
+  titleInput.setAttribute('type', 'text');
   const button = document.createElement('button');
   button.innerHTML = 'Create';
   button.setAttribute('class', 'modal-button');
   button.addEventListener('click', () => {
     addProject(titleInput.value);
+    titleInput.value = '';
     hideProjectModal();
   });
   modalInput.appendChild(titleLabel);
@@ -109,13 +111,16 @@ const renderTodoModal = () => {
 
   // Input and label
   // Holder
-  const modalInput = document.createElement('div');
+  const modalInput = document.createElement('form');
   modalInput.setAttribute('class', 'modal-input');
 
   // Input Labels
   const titleLabel = document.createElement('h4');
   const descLabel = document.createElement('h4');
   const prioLabel = document.createElement('h4');
+  const lowPrioLabel = document.createElement('label');
+  const medPrioLabel = document.createElement('label');
+  const highPrioLabel = document.createElement('label');
   const noteLabel = document.createElement('h4');
   const tagsLabel = document.createElement('h4');
   const dueLabel = document.createElement('h4');
@@ -124,6 +129,9 @@ const renderTodoModal = () => {
   titleLabel.innerHTML = 'Title:';
   descLabel.innerHTML = 'Description:';
   prioLabel.innerHTML = 'Priority:';
+  lowPrioLabel.innerHTML = 'Low:';
+  medPrioLabel.innerHTML = 'Med:';
+  highPrioLabel.innerHTML = 'High:';
   noteLabel.innerHTML = 'Notes:';
   tagsLabel.innerHTML = 'Tags:';
   dueLabel.innerHTML = 'Due:';
@@ -137,7 +145,7 @@ const renderTodoModal = () => {
   medPrioInput.setAttribute('type', 'radio');
   const highPrioInput = document.createElement('input');
   highPrioInput.setAttribute('type', 'radio');
-  const noteInput = document.createElement('input');
+  const noteInput = document.createElement('textarea');
   const tagsInput = document.createElement('input');
   const dueInput = document.createElement('input');
   dueInput.setAttribute('type', 'date');
@@ -161,19 +169,35 @@ const renderTodoModal = () => {
 
   const button = document.createElement('button');
   button.setAttribute('class', 'modal-button');
+  button.setAttribute('type', 'submit');
   button.innerHTML = 'Create';
   button.addEventListener('click', () => {
-    addTodo(titleInput.value, descInput.value, lowPrioInput.value,
+    // Grab selected priority
+    const selectedPrio = [lowPrioInput, medPrioInput, highPrioInput]
+      .filter((input) => input.checked === true);
+    // Add todo with given inputs
+    addTodo(titleInput.value, descInput.value, selectedPrio[0].value,
       noteInput.value, dueInput.value, tagsInput.value);
+    // Clean input fields
+    titleInput.value = '';
+    descInput.value = '';
+    selectedPrio[0].checked = false;
+    noteInput.value = '';
+    dueInput.value = '';
+    tagsInput.value = '';
     hideTodoModal();
   });
+
   modalInput.appendChild(titleLabel);
   modalInput.appendChild(titleInput);
   modalInput.appendChild(descLabel);
   modalInput.appendChild(descInput);
   modalInput.appendChild(prioLabel);
+  modalInput.appendChild(lowPrioLabel);
   modalInput.appendChild(lowPrioInput);
+  modalInput.appendChild(medPrioLabel);
   modalInput.appendChild(medPrioInput);
+  modalInput.appendChild(highPrioLabel);
   modalInput.appendChild(highPrioInput);
   modalInput.appendChild(noteLabel);
   modalInput.appendChild(noteInput);
