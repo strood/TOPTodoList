@@ -35,7 +35,9 @@
     "xml-loader": "^1.2.1"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
     "date-fns": "^2.16.1",
+    "font-awesome-webpack": "0.0.5-beta.2",
     "json-fn": "^1.1.1",
     "lodash": "^4.17.20"
   },

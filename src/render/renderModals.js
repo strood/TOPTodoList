@@ -122,7 +122,6 @@ const renderTodoModal = () => {
   const medPrioLabel = document.createElement('label');
   const highPrioLabel = document.createElement('label');
   const noteLabel = document.createElement('h4');
-  const tagsLabel = document.createElement('h4');
   const dueLabel = document.createElement('h4');
 
   // Label text
@@ -133,7 +132,6 @@ const renderTodoModal = () => {
   medPrioLabel.innerHTML = 'Med:';
   highPrioLabel.innerHTML = 'High:';
   noteLabel.innerHTML = 'Notes:';
-  tagsLabel.innerHTML = 'Tags:';
   dueLabel.innerHTML = 'Due:';
 
   // Inputs
@@ -146,7 +144,6 @@ const renderTodoModal = () => {
   const highPrioInput = document.createElement('input');
   highPrioInput.setAttribute('type', 'radio');
   const noteInput = document.createElement('textarea');
-  const tagsInput = document.createElement('input');
   const dueInput = document.createElement('input');
   dueInput.setAttribute('type', 'date');
 
@@ -162,9 +159,7 @@ const renderTodoModal = () => {
   highPrioInput.setAttribute('id', 'high-prio');
   highPrioInput.setAttribute('name', 'priority');
   highPrioInput.setAttribute('value', 2);
-
   noteInput.setAttribute('id', 'note-input');
-  tagsInput.setAttribute('id', 'tags-input');
   dueInput.setAttribute('id', 'due-input');
 
   const button = document.createElement('button');
@@ -177,14 +172,14 @@ const renderTodoModal = () => {
       .filter((input) => input.checked === true);
     // Add todo with given inputs
     addTodo(titleInput.value, descInput.value, selectedPrio[0].value,
-      noteInput.value, dueInput.value, tagsInput.value);
+      noteInput.value, dueInput.value);
     // Clean input fields
     titleInput.value = '';
     descInput.value = '';
     selectedPrio[0].checked = false;
     noteInput.value = '';
     dueInput.value = '';
-    tagsInput.value = '';
+    // tagsInput.value = '';
     hideTodoModal();
   });
 
@@ -203,8 +198,6 @@ const renderTodoModal = () => {
   modalInput.appendChild(noteInput);
   modalInput.appendChild(dueLabel);
   modalInput.appendChild(dueInput);
-  modalInput.appendChild(tagsLabel);
-  modalInput.appendChild(tagsInput);
 
   // Adding all to form holder
   form.appendChild(formHead);

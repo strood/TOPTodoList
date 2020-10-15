@@ -12,7 +12,7 @@ const buildToolBar = () => {
   const addButton = document.createElement('div');
   addButton.setAttribute('class', 'toolbar-button');
   addButton.innerHTML = '+';
-  renderTodoModal()
+  renderTodoModal();
   addButton.addEventListener('click', displayTodoModal);
   const orderDiv = document.createElement('div');
   orderDiv.setAttribute('class', 'order-div');
@@ -58,10 +58,17 @@ const buildToolBar = () => {
   select.appendChild(oldCreatedOpt);
 
   dropdown.appendChild(select);
+
+  // Project delete button
+  const deleteButton = document.createElement('div');
+  deleteButton.setAttribute('id', 'proj-delete');
+  deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
+
   // Add elements to structure
   toolbarDiv.appendChild(addButton);
   toolbarDiv.appendChild(orderDiv);
   toolbarDiv.appendChild(dropdown);
+  toolbarDiv.appendChild(deleteButton);
   // Return completed toolbar
   return toolbarDiv;
 };

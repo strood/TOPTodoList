@@ -17,9 +17,11 @@ div {
 input,
 textarea,
 button,
-div {
+div,
+svg {
   transition: 0.5s all linear;
 }
+
 .right-bar {
   flex: 8 1;
   height: 100%;

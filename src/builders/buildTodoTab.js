@@ -1,4 +1,11 @@
-import { isFuture } from 'date-fns';
+import {
+  isPast,
+  endOfDay,
+} from 'date-fns';
+
+import completeTodo from '../actions/completeTodo';
+import deleteTodo from '../actions/deleteTodo';
+import editTodo from '../actions/editTodo';
 
 const buildTodoTab = (todo) => {
   const loadedTodo = JSON.parse(localStorage.getItem(todo));
@@ -21,31 +28,34 @@ const buildTodoTab = (todo) => {
   const todoPriority = document.createElement('h2');
   todoPriority.setAttribute('class', 'todo-priority');
   let prioText = '';
+  let prioColor = 'black';
   switch (loadedTodo.priority) {
     case '0':
       prioText = 'Low';
+      prioColor = 'green';
       break;
     case '1':
       prioText = 'Med';
+      prioColor = 'orange';
       break;
     case '2':
       prioText = 'High';
+      prioColor = 'red';
       break;
     default:
       prioText = 'Low';
+      prioColor = 'green';
   }
-  todoPriority.innerHTML = prioText;
-
+  todoPriority.innerHTML = `Priority: ${prioText}`;
+  todoPriority.style.color = prioColor;
   // notes
   const todoNotes = document.createElement('p');
   todoNotes.setAttribute('class', 'todo-notes');
   todoNotes.innerHTML = loadedTodo.notes;
 
-  // tags
-  const todoTags = document.createElement('h2');
-  todoTags.setAttribute('class', 'todo-tags');
-  todoTags.innerHTML = loadedTodo.tags;
-
+  // date holder
+  const dateHolder = document.createElement('div');
+  dateHolder.setAttribute('class', 'date-holder');
   // due
   const todoDue = document.createElement('h2');
   todoDue.setAttribute('class', 'todo-due');
@@ -57,7 +67,7 @@ const buildTodoTab = (todo) => {
   todoDue.innerHTML = `Due: ${styleDueDate}`;
   // Do an overdue check, make changes if todo is overdue
 
-  if (!isFuture(dueDate)) {
+  if (isPast(endOfDay(dueDate))) {
     tab.style.border = '1px solid red';
     const overdue = '- OVERDUE!';
     todoDue.innerHTML = `Due: ${styleDueDate} ${overdue}`;
@@ -73,14 +83,46 @@ const buildTodoTab = (todo) => {
   createdDate = createdDate.slice(0, 4).join(' ');
   todoCreated.innerHTML = `Created: ${createdDate}`;
 
+  dateHolder.appendChild(todoDue);
+  dateHolder.appendChild(todoCreated);
+
+  // ButtonHolder
+  const buttonHolder = document.createElement('div');
+  buttonHolder.setAttribute('class', 'button-holder');
+  const trash = document.createElement('div');
+  const edit = document.createElement('div');
+  const check = document.createElement('div');
+  trash.setAttribute('id', 'trash');
+  trash.innerHTML = '<i class="fas fa-trash"></i>';
+  edit.setAttribute('id', 'edit');
+  edit.innerHTML = '<i class="fas fa-edit"></i>';
+  check.setAttribute('id', 'check');
+  check.innerHTML = '<i class="fas fa-check-circle"></i>';
+
+  buttonHolder.appendChild(trash);
+  buttonHolder.appendChild(edit);
+  buttonHolder.appendChild(check);
+  trash.addEventListener('click', () => {
+    console.log(`delete: ${loadedTodo}`);
+    deleteTodo(loadedTodo);
+  });
+  edit.addEventListener('click', () => {
+    console.log(`edit: ${loadedTodo}`);
+    editTodo(loadedTodo);
+  });
+  check.addEventListener('click', () => {
+    console.log(`check: ${loadedTodo}`);
+    completeTodo(loadedTodo);
+  });
   // compile components into tab
   tab.appendChild(todoTitle);
   tab.appendChild(todoDescription);
   tab.appendChild(todoPriority);
   tab.appendChild(todoNotes);
-  tab.appendChild(todoTags);
-  tab.appendChild(todoDue);
-  tab.appendChild(todoCreated);
+  // tab.appendChild(todoTagsTitle);
+  // tab.appendChild(todoTags);
+  tab.appendChild(dateHolder);
+  tab.appendChild(buttonHolder);
 
   // return completed tab
   return tab;

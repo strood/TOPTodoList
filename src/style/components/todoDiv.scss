@@ -11,24 +11,69 @@
 
 .todo-tab {
   flex-direction: column;
+  justify-content: space-between;
   border: 1px solid black;
   border-radius: .5em;
   padding: 1%;
   width: 300px;
-  height: 400px;
+  max-height: 400px;
   margin: 1% 1%;
   h1 {
-    font-size: 18px;
+    font-size: 25px;
   }
   h2 {
-    font-size: 14px;
+    font-size: 20px;
   }
 
   &:hover {
     box-shadow: 0 0 0 1pt purple;
     border-color: purple;
+    cursor: pointer;
+    div svg {
+      visibility: visible;
+    }
   }
 
+  p {
+    font-size: 18px;
+  }
+
+}
+
+.button-holder {
+  justify-content: space-around;
+
+  svg {
+    font-size: 30px;
+    visibility: collapse;
+  }
+  #trash:hover {
+    color: red;
+  }
+  #edit:hover {
+    color: #FFC145;
+  }
+  #check:hover {
+    color: green;
+  }
+}
+// .todo-tags {
+//   flex-wrap: wrap;
+//   justify-content: center;
+// }
+//
+// .tag-div {
+//   background-color: lightgrey;
+//   padding: 1%;
+//   margin: 1%;
+//   border-radius: 0.25em;
+//   border: 1px solid black;
+//   &:hover {
+//     border: 1px solid yellow;
+//   }
+// }
+.date-holder {
+  flex-direction: column;
 }
 .todo-due {
   font-size: 12px;
