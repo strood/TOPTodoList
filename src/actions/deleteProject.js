@@ -1,5 +1,4 @@
 import deleteTodo from './deleteTodo';
-import renderProjects from '../render/renderProjects';
 
 const deleteProject = () => {
   // Prompt with modal, if they say yes, delete from localstorage, if not, dont do anything
@@ -12,8 +11,12 @@ const deleteProject = () => {
   }
   // Then delete prject itself
   const projs = JSON.parse(localStorage.getItem('ScribblesProjects'));
-  console.log(projs);
-  projs.splice(projs.indexOf(window.ACTIVE_PROJECT), 1);
+
+  for (let i = 0; i < projs.length; i += 1) {
+    if (projs[i].id === window.ACTIVE_PROJECT.id) {
+      projs.splice(i, 1);
+    }
+  }
   localStorage.setItem('ScribblesProjects', JSON.stringify(projs));
 
   const projBar = document.querySelector('.proj-bar');
@@ -22,7 +25,6 @@ const deleteProject = () => {
       projBar.removeChild(projBar.children[i]);
     }
   }
-  console.log(window.ACTIVE_PROJECT);
 };
 
 export default deleteProject;
