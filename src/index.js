@@ -12,24 +12,23 @@ import '@fortawesome/fontawesome-free/js/brands';
 
 // This is initial entry point into app. Everything starts below.
 function index() {
+  // Set up our ACTIVE_PROJECT variable
   const ACTIVE_PROJECT = null;
-  // Initial page structure load
+
+  // Render Page Structure
   renderPage();
 
-  // Check localStorage for saved projects/
-  let scribProjs = JSON.parse(localStorage.getItem('ScribblesProjects'));
+  // Check localStorage for saved projects
+  const scribProjs = JSON.parse(localStorage.getItem('ScribblesProjects'));
 
   if (!scribProjs) {
-    // If no projects in localStorage:
-    // build demo setup
+    // If no projects in localStorage, build a demo setup
     buildDemoSetup();
-    scribProjs = JSON.parse(localStorage.getItem('ScribblesProjects'));
-    // Render Projects
-    renderProjects();
   } else {
     // Render Projects
-    const newProj = scribProjs[0];
-    window.ACTIVE_PROJECT = newProj;
+    const activeProj = scribProjs[0];
+    window.ACTIVE_PROJECT = activeProj;
+    // Render Projects
     renderProjects();
   }
 }

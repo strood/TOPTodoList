@@ -29,9 +29,6 @@
     box-shadow: 0 0 0 1pt purple;
     border-color: purple;
     cursor: pointer;
-    div svg {
-      visibility: visible;
-    }
   }
 
   p {
@@ -42,10 +39,10 @@
 
 .button-holder {
   justify-content: space-around;
-
+  margin-top: 10px;
+  margin-bottom: 10px;
   svg {
     font-size: 30px;
-    visibility: collapse;
   }
   #trash:hover {
     color: red;

@@ -1,3 +1,7 @@
+import {
+  displayProjectModal,
+} from './renderModals';
+
 const renderProjBar = (body) => {
   // Build left bar structure
   const leftBar = document.createElement('div');
@@ -11,6 +15,14 @@ const renderProjBar = (body) => {
   // Build scrollable section to hold projects
   const projBar = document.createElement('div');
   projBar.setAttribute('class', 'proj-bar scroll');
+
+  // Build new proj button and add to projBar
+  const addButton = document.createElement('div');
+  addButton.setAttribute('class', 'newProj-button');
+  addButton.innerHTML = '+';
+  addButton.addEventListener('click', displayProjectModal);
+  projBar.appendChild(addButton);
+
   // Put it together into left bar and append to body
   leftBar.appendChild(logoDiv);
   leftBar.appendChild(projBar);

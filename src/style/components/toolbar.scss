@@ -91,14 +91,28 @@
 }
 
 #proj-delete {
-  margin-left: 1.5%;
+  margin-left: 25px;
   font-size: 25px;
   &:hover {
     cursor: pointer;
     color: red;
   }
 }
+#proj-edit {
+  margin-left: 30px;
+  font-size: 25px;
+  &:hover {
+    cursor: pointer;
+    color: #FFC145;
+  }
+}
 
 .order-div {
   font-size: 25px;
+}
+
+@media only screen and (max-width: 520px) {
+.toolbar .select {
+    width: 100px;
+  }
 }

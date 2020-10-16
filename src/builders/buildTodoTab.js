@@ -73,6 +73,10 @@ const buildTodoTab = (todo) => {
     todoDue.innerHTML = `Due: ${styleDueDate} ${overdue}`;
   }
 
+  if (loadedTodo.completed) {
+    tab.style.border = '1px solid green';
+  }
+
   // created
   const todoCreated = document.createElement('p');
   todoCreated.setAttribute('class', 'todo-created');
@@ -103,7 +107,6 @@ const buildTodoTab = (todo) => {
   buttonHolder.appendChild(edit);
   buttonHolder.appendChild(check);
   trash.addEventListener('click', () => {
-    console.log(`delete: ${loadedTodo}`);
     deleteTodo(loadedTodo);
   });
   edit.addEventListener('click', () => {
@@ -111,7 +114,6 @@ const buildTodoTab = (todo) => {
     editTodo(loadedTodo);
   });
   check.addEventListener('click', () => {
-    console.log(`check: ${loadedTodo}`);
     completeTodo(loadedTodo);
   });
   // compile components into tab
@@ -119,8 +121,6 @@ const buildTodoTab = (todo) => {
   tab.appendChild(todoDescription);
   tab.appendChild(todoPriority);
   tab.appendChild(todoNotes);
-  // tab.appendChild(todoTagsTitle);
-  // tab.appendChild(todoTags);
   tab.appendChild(dateHolder);
   tab.appendChild(buttonHolder);
 

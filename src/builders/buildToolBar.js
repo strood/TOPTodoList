@@ -1,7 +1,9 @@
 import {
   renderTodoModal,
   displayTodoModal,
-} from './renderModals';
+} from '../render/renderModals';
+
+import deleteProject from '../actions/deleteProject';
 
 const buildToolBar = () => {
   // Build toolbar structure
@@ -63,12 +65,17 @@ const buildToolBar = () => {
   const deleteButton = document.createElement('div');
   deleteButton.setAttribute('id', 'proj-delete');
   deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
+  deleteButton.addEventListener('click', () => {
+    console.log(`delete: ${window.ACTIVE_PROJECT.title}`);
+    deleteProject();
+  });
 
   // Add elements to structure
   toolbarDiv.appendChild(addButton);
   toolbarDiv.appendChild(orderDiv);
   toolbarDiv.appendChild(dropdown);
   toolbarDiv.appendChild(deleteButton);
+
   // Return completed toolbar
   return toolbarDiv;
 };

@@ -1,17 +1,13 @@
-import saveProjects from './saveProjects';
+import updateProject from './updateProject';
 
 const saveTodo = (todo) => {
-  // String and save todo under its UID
+  // String and save todo under its UID in localstorage
   localStorage.setItem(`${todo.id}`, JSON.stringify(todo));
 
-  // Add todo id to current active project so it is linked
-  window.ACTIVE_PROJECT.todos.push(todo.id);
-  // update ACTIVE_PROJECT in the ScribblesProjects, removing old version
-  let scribProjs = JSON.parse(localStorage.getItem('ScribblesProjects'));
-  scribProjs = scribProjs.filter((obj) => obj.title !== window.ACTIVE_PROJECT.title);
-  scribProjs.push(window.ACTIVE_PROJECT);
-  // Save ScribblesProjects with updated ACTIVE_PROJECT
-  saveProjects(scribProjs);
+  // Add todo to active project, and update project in storage
+  const newProj = window.ACTIVE_PROJECT;
+  newProj.todos.push(todo.id);
+  updateProject(newProj);
 };
 
 export default saveTodo;
