@@ -9,6 +9,14 @@ const deleteTodo = (todo) => {
   proj.todos.splice(proj.todos.indexOf(todo.id), 1);
   updateProject(proj);
   window.ACTIVE_PROJECT = proj;
+
+  // grab todo-bar and remove todo
+  const todoBar = document.querySelector('.todo-bar');
+  for (let i = 0; i < todoBar.children.length; i += 1) {
+    if (todoBar.children[i].id === todo.id) {
+      todoBar.removeChild(todoBar.children[i]);
+    }
+  }
 };
 
 export default deleteTodo;

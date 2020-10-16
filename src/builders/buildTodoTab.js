@@ -13,6 +13,7 @@ const buildTodoTab = (todo) => {
   // Todo tab
   const tab = document.createElement('div');
   tab.setAttribute('class', 'todo-tab');
+  tab.setAttribute('id', `${loadedTodo.id}`);
 
   // title
   const todoTitle = document.createElement('h1');

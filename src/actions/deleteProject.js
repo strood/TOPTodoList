@@ -16,12 +16,12 @@ const deleteProject = () => {
   projs.splice(projs.indexOf(window.ACTIVE_PROJECT), 1);
   localStorage.setItem('ScribblesProjects', JSON.stringify(projs));
 
-
-  const pbar = document.querySelector('.proj-bar');
-  // pbar.children.forEach  G through each child and find and delete the one that
-  // matches window.ACTIVE_PROJECT
-  // renderProjects();
-
+  const projBar = document.querySelector('.proj-bar');
+  for (let i = 0; i < projBar.children.length; i += 1) {
+    if (projBar.children[i].innerHTML === window.ACTIVE_PROJECT.title) {
+      projBar.removeChild(projBar.children[i]);
+    }
+  }
   console.log(window.ACTIVE_PROJECT);
 };
 
