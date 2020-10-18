@@ -13,17 +13,6 @@ const displayProjectModal = () => {
   };
 };
 
-const displayTodoModal = () => {
-  const todoMod = document.querySelector('.todo-modal');
-  todoMod.style.display = 'block';
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = (event) => {
-    if (event.target === todoMod) {
-      todoMod.style.display = 'none';
-    }
-  };
-};
-
 const hideProjectModal = () => {
   // Get the modal
   const projMod = document.querySelector('.proj-modal');
@@ -33,6 +22,18 @@ const hideProjectModal = () => {
 const hideTodoModal = () => {
   const todoMod = document.querySelector('.todo-modal');
   todoMod.style.display = 'none';
+};
+
+const displayTodoModal = () => {
+  const todoMod = document.querySelector('.todo-modal');
+  todoMod.style.display = 'block';
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = (event) => {
+    if (event.target === todoMod) {
+      todoMod.style.display = 'none';
+    }
+  };
 };
 
 const renderProjectModal = () => {
@@ -136,6 +137,7 @@ const renderTodoModal = () => {
 
   // Inputs
   const titleInput = document.createElement('input');
+  titleInput.type = false;
   const descInput = document.createElement('input');
   const lowPrioInput = document.createElement('input');
   lowPrioInput.setAttribute('type', 'radio');
@@ -179,7 +181,6 @@ const renderTodoModal = () => {
     selectedPrio[0].checked = false;
     noteInput.value = '';
     dueInput.value = '';
-    // tagsInput.value = '';
     hideTodoModal();
   });
 

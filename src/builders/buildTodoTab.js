@@ -5,7 +5,6 @@ import {
 
 import completeTodo from '../actions/completeTodo';
 import deleteTodo from '../actions/deleteTodo';
-import editTodo from '../actions/editTodo';
 
 const buildTodoTab = (todo) => {
   const loadedTodo = JSON.parse(localStorage.getItem(todo));
@@ -95,25 +94,19 @@ const buildTodoTab = (todo) => {
   const buttonHolder = document.createElement('div');
   buttonHolder.setAttribute('class', 'button-holder');
   const trash = document.createElement('div');
-  const edit = document.createElement('div');
   const check = document.createElement('div');
   trash.setAttribute('id', 'trash');
   trash.innerHTML = '<i class="fas fa-trash"></i>';
-  edit.setAttribute('id', 'edit');
-  edit.innerHTML = '<i class="fas fa-edit"></i>';
+
   check.setAttribute('id', 'check');
   check.innerHTML = '<i class="fas fa-check-circle"></i>';
 
   buttonHolder.appendChild(trash);
-  buttonHolder.appendChild(edit);
   buttonHolder.appendChild(check);
   trash.addEventListener('click', () => {
     deleteTodo(loadedTodo);
   });
-  edit.addEventListener('click', () => {
-    console.log(`edit: ${loadedTodo}`);
-    editTodo(loadedTodo);
-  });
+
   check.addEventListener('click', () => {
     completeTodo(loadedTodo);
   });
