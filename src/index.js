@@ -2,6 +2,7 @@
 import renderPage from './render/renderPage';
 import renderProjects from './render/renderProjects';
 import buildDemoSetup from './builders/buildDemoSetup';
+
 // Import styles
 import './style/reset.scss';
 import './style/style.scss';
@@ -12,9 +13,6 @@ import '@fortawesome/fontawesome-free/js/brands';
 
 // This is initial entry point into app. Everything starts below.
 function index() {
-  // Set up our ACTIVE_PROJECT variable
-  const ACTIVE_PROJECT = null;
-
   // Render Page Structure
   renderPage();
 
@@ -23,6 +21,7 @@ function index() {
 
   if (!scribProjs) {
     // If no projects in localStorage, build a demo setup
+    // Add Demo Todo
     buildDemoSetup();
   } else {
     // Render Projects

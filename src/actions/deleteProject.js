@@ -19,6 +19,7 @@ const deleteProject = () => {
   }
   localStorage.setItem('ScribblesProjects', JSON.stringify(projs));
 
+  // Remove tab from projBar
   const projBar = document.querySelector('.proj-bar');
   for (let i = 0; i < projBar.children.length; i += 1) {
     if (projBar.children[i].innerHTML === window.ACTIVE_PROJECT.title) {

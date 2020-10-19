@@ -97,7 +97,6 @@ const buildTodoTab = (todo) => {
   const check = document.createElement('div');
   trash.setAttribute('id', 'trash');
   trash.innerHTML = '<i class="fas fa-trash"></i>';
-
   check.setAttribute('id', 'check');
   check.innerHTML = '<i class="fas fa-check-circle"></i>';
 
