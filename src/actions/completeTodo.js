@@ -8,7 +8,7 @@ const completeTodo = (todo) => {
   const todoBar = document.querySelector('.todo-bar');
   for (let i = 0; i < todoBar.children.length; i += 1) {
     if (todoBar.children[i].id === loadedTodo.id) {
-      todoBar.children[i].style.border = '1px solid green';
+      todoBar.children[i].style.border = '2px solid green';
     }
   }
 };

@@ -2,6 +2,7 @@
 import renderPage from './render/renderPage';
 import renderProjects from './render/renderProjects';
 import buildDemoSetup from './builders/buildDemoSetup';
+import sortController from './actions/sortController';
 
 // Import styles
 import './style/reset.scss';
@@ -10,6 +11,8 @@ import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
+
+window.sortController = sortController;
 
 // This is initial entry point into app. Everything starts below.
 function index() {

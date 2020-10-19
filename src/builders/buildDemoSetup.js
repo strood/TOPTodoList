@@ -8,8 +8,8 @@ const buildDemoSetup = () => {
   addProject('Demo Project');
 
   // Add Demo Todo
-  const dueDate = format(addDays(Date.now(), 1), 'yyyy-MM-dd').split('-').join(' ');
-  addTodo('Demo Todo', 'A sample todo list', 1, 'All the todos for your selected project are found here! Add another project with the "+" on the left, or add another todo with the "+" above!', dueDate);
+  const dueDate = format(addDays(Date.now(), 1), 'yyyy-MM-dd-HH:mm:ss').split('-').join(' ');
+  addTodo('Demo Todo', 'A sample todo list', 0, 'All the todos for your selected project are found here! Add another project with the "+" on the left, or add another todo with the "+" above!', dueDate);
 };
 
 export default buildDemoSetup;

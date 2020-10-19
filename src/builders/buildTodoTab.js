@@ -74,7 +74,7 @@ const buildTodoTab = (todo) => {
   }
 
   if (loadedTodo.completed) {
-    tab.style.border = '1px solid green';
+    tab.style.border = '2px solid green';
   }
 
   // created

@@ -45,11 +45,17 @@ const buildToolBar = () => {
   lateDueDateOpt.setAttribute('value', '4');
   lateDueDateOpt.innerHTML = 'Due (later -> earlier)';
   const newCreatedOpt = document.createElement('option');
-  newCreatedOpt.setAttribute('value', '4');
+  newCreatedOpt.setAttribute('value', '5');
   newCreatedOpt.innerHTML = 'Created (newest -> oldest)';
   const oldCreatedOpt = document.createElement('option');
-  oldCreatedOpt.setAttribute('value', '4');
+  oldCreatedOpt.setAttribute('value', '6');
   oldCreatedOpt.innerHTML = 'Created (oldest -> newest)';
+  const completeFirstOpt = document.createElement('option');
+  completeFirstOpt.setAttribute('value', '7');
+  completeFirstOpt.innerHTML = 'Status (complete -> todo)';
+  const incompleteFirstOpt = document.createElement('option');
+  incompleteFirstOpt.setAttribute('value', '8');
+  incompleteFirstOpt.innerHTML = 'Status (todo -> complete)';
 
   select.appendChild(chooseOpt);
   select.appendChild(highPriorityOpt);
@@ -58,15 +64,19 @@ const buildToolBar = () => {
   select.appendChild(lateDueDateOpt);
   select.appendChild(newCreatedOpt);
   select.appendChild(oldCreatedOpt);
+  select.appendChild(completeFirstOpt);
+  select.appendChild(incompleteFirstOpt);
 
   dropdown.appendChild(select);
+
+  // Add onchange listener to change todo sort
+  select.setAttribute('onchange', 'sortController(this.value)');
 
   // Project delete button
   const deleteButton = document.createElement('div');
   deleteButton.setAttribute('id', 'proj-delete');
   deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
   deleteButton.addEventListener('click', () => {
-    console.log(`delete: ${window.ACTIVE_PROJECT.title}`);
     deleteProject();
   });
 
