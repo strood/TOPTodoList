@@ -2,9 +2,10 @@ import {
   isPast,
   endOfDay,
 } from 'date-fns';
+// import displayTodoConfirmModal from '../render/renderModals';
 import editTodo from '../actions/editTodo';
 import completeTodo from '../actions/completeTodo';
-import deleteTodo from '../actions/deleteTodo';
+// import deleteTodo from '../actions/deleteTodo';
 
 const buildTodoTab = (todo) => {
   const loadedTodo = JSON.parse(localStorage.getItem(todo));
@@ -95,7 +96,20 @@ const buildTodoTab = (todo) => {
   buttonHolder.appendChild(edit);
   buttonHolder.appendChild(check);
   trash.addEventListener('click', () => {
-    deleteTodo(loadedTodo);
+    // Trigger modal, then give this to modal to confirm
+
+    // Get the modal
+    const todoConfMod = document.querySelector('.todo-confirm-modal');
+    todoConfMod.style.display = 'block';
+    const message = document.getElementById('todo-warning-message');
+    message.innerHTML = `Are you sure you want to delete '${loadedTodo.title}' todo?`;
+    message.setAttribute('id', loadedTodo.id);
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = (event) => {
+      if (event.target === todoConfMod) {
+        todoConfMod.style.display = 'none';
+      }
+    };
   });
 
   check.addEventListener('click', () => {

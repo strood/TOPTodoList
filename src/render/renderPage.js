@@ -4,6 +4,8 @@ import {
   renderTodoModal,
   renderProjectModal,
   renderTodoEditModal,
+  renderTodoConfirmModal,
+  renderProjConfirmModal,
 } from './renderModals';
 
 const renderPage = () => {
@@ -24,6 +26,10 @@ const renderPage = () => {
 
   // Render hidden todo edit modal
   renderTodoEditModal();
+
+  // Render hidden confirmation modals
+  renderTodoConfirmModal();
+  renderProjConfirmModal();
 };
 
 export default renderPage;

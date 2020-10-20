@@ -2,6 +2,8 @@ import addProject from '../actions/addProject';
 import addTodo from '../actions/addTodo';
 import updateTodo from '../actions/updateTodo';
 import renderTodos from './renderTodos';
+import deleteProject from '../actions/deleteProject';
+import deleteTodo from '../actions/deleteTodo';
 
 import Todo from '../components/todos';
 
@@ -30,6 +32,32 @@ const displayTodoModal = () => {
   } else {
     displayProjectModal();
   }
+};
+
+const displayProjConfirmModal = () => {
+  // Get the modal
+  const projConfMod = document.querySelector('.proj-confirm-modal');
+  projConfMod.style.display = 'block';
+  const message = document.getElementById('proj-warning-message');
+  message.innerHTML = `Are you sure you want to delete '${window.ACTIVE_PROJECT.title}' project?`;
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = (event) => {
+    if (event.target === projConfMod) {
+      projConfMod.style.display = 'none';
+    }
+  };
+};
+
+const hideTodoConfirmModal = () => {
+  // Get the modal
+  const todoConfMod = document.querySelector('.todo-confirm-modal');
+  todoConfMod.style.display = 'none';
+};
+
+const hideProjConfirmModal = () => {
+  // Get the modal
+  const projConfMod = document.querySelector('.proj-confirm-modal');
+  projConfMod.style.display = 'none';
 };
 
 const hideProjectModal = () => {
@@ -100,7 +128,6 @@ const renderProjectModal = () => {
   document.body.appendChild(modal);
 };
 
-// Modal for todo creation
 const renderTodoModal = () => {
   // Modal
   const modal = document.createElement('div');
@@ -227,7 +254,6 @@ const renderTodoModal = () => {
   document.body.appendChild(modal);
 };
 
-// Modal for todo creation
 const renderTodoEditModal = () => {
   // Modal
   const modal = document.createElement('div');
@@ -361,10 +387,150 @@ const renderTodoEditModal = () => {
   document.body.appendChild(modal);
 };
 
+const renderTodoConfirmModal = () => {
+  // Modal
+  const modal = document.createElement('div');
+  modal.setAttribute('class', 'modal todo-confirm-modal');
+
+  // form and form elements
+  const form = document.createElement('div');
+  form.setAttribute('class', 'modal-content');
+
+  // Title and exit bar
+  const formHead = document.createElement('div');
+  formHead.setAttribute('class', 'modal-header');
+  const exit = document.createElement('div');
+  exit.setAttribute('class', 'close');
+  exit.addEventListener('click', hideTodoConfirmModal);
+  exit.innerHTML = '&times;';
+  const modalTitle = document.createElement('h3');
+  modalTitle.innerHTML = 'Warning!';
+  formHead.appendChild(modalTitle);
+  formHead.appendChild(exit);
+
+  // Input and label
+  // Holder
+  const modalInput = document.createElement('form');
+  modalInput.setAttribute('class', 'modal-input');
+
+  // Input Labels
+  const message = document.createElement('p');
+  message.setAttribute('id', 'todo-warning-message');
+  const messageTwo = document.createElement('p');
+  messageTwo.innerHTML = 'This can not be undone!';
+
+  modalInput.appendChild(message);
+  modalInput.appendChild(messageTwo);
+
+  const buttonHolder = document.createElement('div');
+  buttonHolder.setAttribute('id', 'conf-button-holder');
+
+  const confButton = document.createElement('button');
+  confButton.setAttribute('class', 'modal-button');
+  confButton.setAttribute('type', 'submit');
+  confButton.innerHTML = 'Delete';
+  confButton.addEventListener('click', () => {
+    const loadedTodo = JSON.parse(localStorage.getItem(message.id));
+    deleteTodo(loadedTodo);
+    hideTodoConfirmModal();
+  });
+  const denyButton = document.createElement('button');
+  denyButton.setAttribute('class', 'modal-button');
+  denyButton.setAttribute('type', 'submit');
+  denyButton.innerHTML = 'Cancel';
+  denyButton.addEventListener('click', () => {
+    hideTodoConfirmModal();
+  });
+
+  buttonHolder.appendChild(confButton);
+  buttonHolder.appendChild(denyButton);
+  // Adding all to form holder
+  form.appendChild(formHead);
+  form.appendChild(modalInput);
+  form.appendChild(buttonHolder);
+
+  // add form to modal
+  modal.appendChild(form);
+
+  // Add modal to body, its hidden by default
+  document.body.appendChild(modal);
+};
+
+const renderProjConfirmModal = () => {
+  // Modal
+  const modal = document.createElement('div');
+  modal.setAttribute('class', 'modal proj-confirm-modal');
+
+  // form and form elements
+  const form = document.createElement('div');
+  form.setAttribute('class', 'modal-content');
+
+  // Title and exit bar
+  const formHead = document.createElement('div');
+  formHead.setAttribute('class', 'modal-header');
+  const exit = document.createElement('div');
+  exit.setAttribute('class', 'close');
+  exit.addEventListener('click', hideProjConfirmModal);
+  exit.innerHTML = '&times;';
+  const modalTitle = document.createElement('h3');
+  modalTitle.innerHTML = 'Waring!';
+  formHead.appendChild(modalTitle);
+  formHead.appendChild(exit);
+
+  // Input and label
+  // Holder
+  const modalInput = document.createElement('form');
+  modalInput.setAttribute('class', 'modal-input');
+
+  // Input Labels
+  const message = document.createElement('p');
+  message.setAttribute('id', 'proj-warning-message');
+  const messageTwo = document.createElement('p');
+  messageTwo.innerHTML = 'This can not be undone!';
+
+  modalInput.appendChild(message);
+  modalInput.appendChild(messageTwo);
+
+  const buttonHolder = document.createElement('div');
+  buttonHolder.setAttribute('id', 'conf-button-holder');
+
+  const confButton = document.createElement('button');
+  confButton.setAttribute('class', 'modal-button');
+  confButton.setAttribute('type', 'submit');
+  confButton.innerHTML = 'Delete';
+  confButton.addEventListener('click', () => {
+    deleteProject();
+    hideProjConfirmModal();
+  });
+  const denyButton = document.createElement('button');
+  denyButton.setAttribute('class', 'modal-button');
+  denyButton.setAttribute('type', 'submit');
+  denyButton.innerHTML = 'Cancel';
+  denyButton.addEventListener('click', () => {
+    hideProjConfirmModal();
+  });
+
+  buttonHolder.appendChild(confButton);
+  buttonHolder.appendChild(denyButton);
+  // Adding all to form holder
+  form.appendChild(formHead);
+  form.appendChild(modalInput);
+  form.appendChild(buttonHolder);
+
+  // add form to modal
+  modal.appendChild(form);
+
+  // Add modal to body, its hidden by default
+  document.body.appendChild(modal);
+};
+
 export {
   renderProjectModal,
   renderTodoModal,
   renderTodoEditModal,
+  renderTodoConfirmModal,
+  renderProjConfirmModal,
+  displayProjConfirmModal,
   displayProjectModal,
   displayTodoModal,
 };

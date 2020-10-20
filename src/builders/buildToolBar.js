@@ -1,9 +1,10 @@
 import {
   renderTodoModal,
   displayTodoModal,
+  displayProjConfirmModal,
 } from '../render/renderModals';
 
-import deleteProject from '../actions/deleteProject';
+// import deleteProject from '../actions/deleteProject';
 
 const buildToolBar = () => {
   // Build toolbar structure
@@ -77,7 +78,8 @@ const buildToolBar = () => {
   deleteButton.setAttribute('id', 'proj-delete');
   deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
   deleteButton.addEventListener('click', () => {
-    deleteProject();
+    // Trigger modal, then if confirmed we fo this
+    displayProjConfirmModal();
   });
 
   // Add elements to structure

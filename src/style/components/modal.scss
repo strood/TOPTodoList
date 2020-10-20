@@ -28,7 +28,7 @@
   margin: 10% auto;
   /* 15% from the top and centered */
   padding: 20px;
-  border: 1px solid green;
+  border: 2px solid black;
   border-radius: 0.5em;
   width: 30%;
   min-width: 265px;
@@ -68,17 +68,24 @@
   cursor: pointer;
 }
 // Modal info input
+
 .modal-input {
   flex-direction: column;
   justify-content: space-between;
+
+  p {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2%;
+  }
 
   input {
     border-radius: 0.5em;
     border: 1px solid grey;
     padding: 10px;
 
-    &:hover,
-    &:focus {
+    &:focus,
+    &:hover {
       border: 1px solid orange;
     }
 
@@ -90,35 +97,51 @@
       width: 0.5px;
       height: 0.5px;
       border: 0.5px solid #999;
-
       margin-right: 5px;
       position: relative;
       top: 4px;
+
       &:hover {
         border: 0.3px solid orange;
       }
+
       &:checked {
         background-color: orange;
         // border: 0.3px solid orange;
       }
     }
   }
-  #low-prio:checked,
-  #edit-low-prio:checked {
+
+  #edit-low-prio:checked,
+  #low-prio:checked {
     background-color: green;
     border: 0.3px solid green;
   }
-  #med-prio:checked,
-  #edit-med-prio:checked {
+
+  #edit-low-prio:hover,
+  #low-prio:hover {
+    border: 0.3px solid green;
+  }
+
+  #edit-med-prio:checked,
+  #med-prio:checked {
     background-color: orange;
     border: 0.3px solid orange;
   }
-  #high-prio:checked,
-  #edit-high-prio:checked {
+  #edit-med-prio:hover,
+  #med-prio:hover {
+    border: 0.3px solid orange;
+  }
+
+  #edit-high-prio:checked,
+  #high-prio:checked {
     background-color: red;
     border: 0.3px solid red;
   }
-
+  #edit-high-prio:hover,
+  #high-prio:hover {
+    border: 0.3px solid red;
+  }
 
   textarea {
     border-radius: 0.5em;
@@ -128,6 +151,16 @@
     &:hover {
       border: 1px solid orange;
     }
+  }
+}
+
+#conf-button-holder {
+  width: 35%;
+  padding-top: 1%;
+  justify-content: space-around;
+
+  .modal-button:hover {
+    border: 1px solid red;
   }
 }
 

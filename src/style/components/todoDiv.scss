@@ -46,15 +46,15 @@
     font-size: 30px;
     cursor: pointer;
   }
+  #check:hover {
+    color: green;
+  }
 }
 #trash:hover {
   color: red;
 }
 #edit:hover {
   color: #FFC145;
-}
-#check:hover {
-  color: green;
 }
 
 .date-holder {

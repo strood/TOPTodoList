@@ -1,7 +1,8 @@
-# TOP Todo List Project
+# Scribbles
+For Simple Note Taking
 
-Todo List built while considering OOP in JavaScript.
+### A TodoList project created for The Odin Project.
 
-- Used localStorage for persistence.
+- Used localStorage for persistence so your notes are bound to your browser!
 
-[Live Demo](https://scribbles-strood.netlify.app/) - Check it out!
+## [Live Demo](https://scribbles-strood.netlify.app/) - Check it out!
