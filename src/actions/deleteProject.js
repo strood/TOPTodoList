@@ -22,7 +22,7 @@ const deleteProject = () => {
   // Remove tab from projBar
   const projBar = document.querySelector('.proj-bar');
   for (let i = 0; i < projBar.children.length; i += 1) {
-    if (projBar.children[i].innerHTML === window.ACTIVE_PROJECT.title) {
+    if (projBar.children[i].id === window.ACTIVE_PROJECT.id) {
       projBar.removeChild(projBar.children[i]);
     }
   }

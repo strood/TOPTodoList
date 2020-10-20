@@ -3,6 +3,7 @@ import renderTodos from '../render/renderTodos';
 const buildProjectTab = (project) => {
   const holder = document.createElement('div');
   holder.innerHTML = project.title;
+  holder.setAttribute('id', project.id);
   holder.setAttribute('class', 'proj-tab');
   holder.addEventListener('click', () => {
     window.ACTIVE_PROJECT = project;
