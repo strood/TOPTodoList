@@ -65,17 +65,6 @@ const buildTodoTab = (todo) => {
   let styleDueDate = dueDate.toString().split(' ');
   styleDueDate = styleDueDate.slice(0, 4).join(' ');
   todoDue.innerHTML = `Due: ${styleDueDate}`;
-  // Do an overdue check, make changes if todo is overdue
-
-  if (isPast(endOfDay(dueDate))) {
-    tab.style.border = '2px solid red';
-    const overdue = '- OVERDUE!';
-    todoDue.innerHTML = `Due: ${styleDueDate} ${overdue}`;
-  }
-
-  if (loadedTodo.completed) {
-    tab.style.border = '2px solid green';
-  }
 
   // created
   const todoCreated = document.createElement('p');
@@ -117,6 +106,18 @@ const buildTodoTab = (todo) => {
     editTodo(loadedTodo);
   });
 
+  // Do an overdue check, make changes if todo is overdue
+  // Check if todo is completed
+  if (isPast(endOfDay(dueDate))) {
+    tab.style.border = '3px solid red';
+    const overdue = '- OVERDUE!';
+    todoDue.innerHTML = `Due: ${styleDueDate} ${overdue}`;
+  }
+
+  if (loadedTodo.completed) {
+    tab.style.border = '3px solid green';
+    check.style.color = 'green';
+  }
   // compile components into tab
   tab.appendChild(todoTitle);
   tab.appendChild(todoDescription);

@@ -18,15 +18,18 @@ const displayProjectModal = () => {
 };
 
 const displayTodoModal = () => {
-  const todoMod = document.querySelector('.todo-modal');
-  todoMod.style.display = 'block';
-
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = (event) => {
-    if (event.target === todoMod) {
-      todoMod.style.display = 'none';
-    }
-  };
+  if (window.ACTIVE_PROJECT) {
+    const todoMod = document.querySelector('.todo-modal');
+    todoMod.style.display = 'block';
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = (event) => {
+      if (event.target === todoMod) {
+        todoMod.style.display = 'none';
+      }
+    };
+  } else {
+    displayProjectModal();
+  }
 };
 
 const hideProjectModal = () => {
@@ -181,8 +184,12 @@ const renderTodoModal = () => {
     const selectedPrio = [lowPrioInput, medPrioInput, highPrioInput]
       .filter((input) => input.checked === true);
     // Add todo with given inputs
+    if (selectedPrio.length === 0) {
+      selectedPrio.push(lowPrioInput);
+    }
     addTodo(titleInput.value, descInput.value, selectedPrio[0].value,
       noteInput.value, dueInput.value);
+
     // Clean input fields
     titleInput.value = '';
     descInput.value = '';

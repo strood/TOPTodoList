@@ -13,11 +13,12 @@
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid black;
+  -webkit-box-shadow: 0px 0px 10px -2px #000000;
+  box-shadow: 0px 0px 10px -2px #000000;
   border-radius: .5em;
   padding: 1%;
   width: 300px;
   height: 400px;
-
   margin: 1% 1%;
   h1 {
     font-size: 25px;
@@ -29,7 +30,6 @@
   &:hover {
     box-shadow: 0 0 0 2pt purple;
     border-color: purple;
-    cursor: pointer;
   }
 
   p {
@@ -44,16 +44,17 @@
   margin-bottom: 10px;
   svg {
     font-size: 30px;
+    cursor: pointer;
   }
-  #trash:hover {
-    color: red;
-  }
-  #edit:hover {
-    color: #FFC145;
-  }
-  #check:hover {
-    color: green;
-  }
+}
+#trash:hover {
+  color: red;
+}
+#edit:hover {
+  color: #FFC145;
+}
+#check:hover {
+  color: green;
 }
 
 .date-holder {

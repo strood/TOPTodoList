@@ -26,6 +26,17 @@ const deleteProject = () => {
       projBar.removeChild(projBar.children[i]);
     }
   }
+
+  // Set new ACTIVE_PROJECT or set as none and click make project if empty
+  const updatedProjs = JSON.parse(localStorage.getItem('ScribblesProjects'));
+  if (updatedProjs.length < 1) {
+    // No projects, click on new proj and set as null
+    window.ACTIVE_PROJECT = null;
+    projBar.children[0].click();
+  } else {
+    // Click first proj in projbar which will set it as ACTIVE_PROJECT
+    projBar.children[0].click();
+  }
 };
 
 export default deleteProject;

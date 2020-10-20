@@ -99,10 +99,26 @@
       }
       &:checked {
         background-color: orange;
-        border: 0.3px solid orange;
+        // border: 0.3px solid orange;
       }
     }
   }
+  #low-prio:checked,
+  #edit-low-prio:checked {
+    background-color: green;
+    border: 0.3px solid green;
+  }
+  #med-prio:checked,
+  #edit-med-prio:checked {
+    background-color: orange;
+    border: 0.3px solid orange;
+  }
+  #high-prio:checked,
+  #edit-high-prio:checked {
+    background-color: red;
+    border: 0.3px solid red;
+  }
+
 
   textarea {
     border-radius: 0.5em;
