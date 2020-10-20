@@ -46,10 +46,10 @@ const buildToolBar = () => {
   lateDueDateOpt.innerHTML = 'Due (later -> earlier)';
   const newCreatedOpt = document.createElement('option');
   newCreatedOpt.setAttribute('value', '5');
-  newCreatedOpt.innerHTML = 'Created (newest -> oldest)';
+  newCreatedOpt.innerHTML = 'Updated (newest -> oldest)';
   const oldCreatedOpt = document.createElement('option');
   oldCreatedOpt.setAttribute('value', '6');
-  oldCreatedOpt.innerHTML = 'Created (oldest -> newest)';
+  oldCreatedOpt.innerHTML = 'Updated (oldest -> newest)';
   const completeFirstOpt = document.createElement('option');
   completeFirstOpt.setAttribute('value', '7');
   completeFirstOpt.innerHTML = 'Status (complete -> todo)';

@@ -1,5 +1,7 @@
 # TOP Todo List Project
 
-Building Todo list while considering OOP in JavaScript.
+Todo List built while considering OOP in JavaScript.
 
-[Live Demo]() - Check it out!
+- Used localStorage for persistence.
+
+[Live Demo](https://scribbles-strood.netlify.app/) - Check it out!

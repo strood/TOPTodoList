@@ -3,6 +3,7 @@ import renderTodoBar from './renderTodoBar';
 import {
   renderTodoModal,
   renderProjectModal,
+  renderTodoEditModal,
 } from './renderModals';
 
 const renderPage = () => {
@@ -20,6 +21,9 @@ const renderPage = () => {
 
   // Render hidden todo modal for adding todos
   renderTodoModal();
+
+  // Render hidden todo edit modal
+  renderTodoEditModal();
 };
 
 export default renderPage;

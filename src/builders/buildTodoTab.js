@@ -2,7 +2,7 @@ import {
   isPast,
   endOfDay,
 } from 'date-fns';
-
+import editTodo from '../actions/editTodo';
 import completeTodo from '../actions/completeTodo';
 import deleteTodo from '../actions/deleteTodo';
 
@@ -68,7 +68,7 @@ const buildTodoTab = (todo) => {
   // Do an overdue check, make changes if todo is overdue
 
   if (isPast(endOfDay(dueDate))) {
-    tab.style.border = '1px solid red';
+    tab.style.border = '2px solid red';
     const overdue = '- OVERDUE!';
     todoDue.innerHTML = `Due: ${styleDueDate} ${overdue}`;
   }
@@ -85,7 +85,7 @@ const buildTodoTab = (todo) => {
   let createdDate = new Date(loadedTodoCreated);
   createdDate = createdDate.toString().split(' ');
   createdDate = createdDate.slice(0, 4).join(' ');
-  todoCreated.innerHTML = `Created: ${createdDate}`;
+  todoCreated.innerHTML = `Updated: ${createdDate}`;
 
   dateHolder.appendChild(todoDue);
   dateHolder.appendChild(todoCreated);
@@ -95,12 +95,15 @@ const buildTodoTab = (todo) => {
   buttonHolder.setAttribute('class', 'button-holder');
   const trash = document.createElement('div');
   const check = document.createElement('div');
+  const edit = document.createElement('div');
   trash.setAttribute('id', 'trash');
   trash.innerHTML = '<i class="fas fa-trash"></i>';
   check.setAttribute('id', 'check');
   check.innerHTML = '<i class="fas fa-check-circle"></i>';
-
+  edit.setAttribute('id', 'edit');
+  edit.innerHTML = '<i class="fas fa-edit"></i>';
   buttonHolder.appendChild(trash);
+  buttonHolder.appendChild(edit);
   buttonHolder.appendChild(check);
   trash.addEventListener('click', () => {
     deleteTodo(loadedTodo);
@@ -109,6 +112,11 @@ const buildTodoTab = (todo) => {
   check.addEventListener('click', () => {
     completeTodo(loadedTodo);
   });
+
+  edit.addEventListener('click', () => {
+    editTodo(loadedTodo);
+  });
+
   // compile components into tab
   tab.appendChild(todoTitle);
   tab.appendChild(todoDescription);
