@@ -208,14 +208,20 @@ const renderTodoModal = () => {
   button.innerHTML = 'Create';
   button.addEventListener('click', () => {
     // Grab selected priority
-    const selectedPrio = [lowPrioInput, medPrioInput, highPrioInput]
-      .filter((input) => input.checked === true);
+    const selectedPrio = [lowPrioInput, medPrioInput, highPrioInput].filter(
+      (input) => input.checked === true
+    );
     // Add todo with given inputs
     if (selectedPrio.length === 0) {
       selectedPrio.push(lowPrioInput);
     }
-    addTodo(titleInput.value, descInput.value, selectedPrio[0].value,
-      noteInput.value, dueInput.value);
+    addTodo(
+      titleInput.value,
+      descInput.value,
+      selectedPrio[0].value,
+      noteInput.value,
+      dueInput.value
+    );
 
     // Clean input fields
     titleInput.value = '';
@@ -334,17 +340,20 @@ const renderTodoEditModal = () => {
   const button = document.createElement('button');
   button.setAttribute('class', 'modal-button');
   button.setAttribute('type', 'submit');
-  button.innerHTML = 'Create';
+  button.innerHTML = 'Update';
   button.addEventListener('click', () => {
     // Grab selected priority
-    const selectedPrio = [lowPrioInput, medPrioInput, highPrioInput]
-      .filter((input) => input.checked === true);
+    const selectedPrio = [lowPrioInput, medPrioInput, highPrioInput].filter(
+      (input) => input.checked === true
+    );
     // Add todo with given inputs
-    const newTodo = new Todo(titleInput.value,
+    const newTodo = new Todo(
+      titleInput.value,
       descInput.value,
       selectedPrio[0].value,
       noteInput.value,
-      dueInput.value);
+      dueInput.value
+    );
     newTodo.id = idInput.value;
     updateTodo(newTodo);
     // Clean input fields
@@ -430,7 +439,10 @@ const renderTodoConfirmModal = () => {
   confButton.setAttribute('type', 'submit');
   confButton.innerHTML = 'Delete';
   confButton.addEventListener('click', () => {
-    const loadedTodo = JSON.parse(localStorage.getItem(message.id));
+    console.log(message.attributes.key.value);
+    const loadedTodo = JSON.parse(
+      localStorage.getItem(message.attributes.key.value)
+    );
     deleteTodo(loadedTodo);
     hideTodoConfirmModal();
   });

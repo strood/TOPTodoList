@@ -1,7 +1,4 @@
-import {
-  isPast,
-  endOfDay,
-} from 'date-fns';
+import { isPast, endOfDay } from 'date-fns';
 // import displayTodoConfirmModal from '../render/renderModals';
 import editTodo from '../actions/editTodo';
 import completeTodo from '../actions/completeTodo';
@@ -86,7 +83,7 @@ const buildTodoTab = (todo) => {
   const trash = document.createElement('div');
   const check = document.createElement('div');
   const edit = document.createElement('div');
-  trash.setAttribute('id', 'trash');
+  trash.setAttribute('id', `trash`);
   trash.innerHTML = '<i class="fas fa-trash"></i>';
   check.setAttribute('id', 'check');
   check.innerHTML = '<i class="fas fa-check-circle"></i>';
@@ -95,15 +92,15 @@ const buildTodoTab = (todo) => {
   buttonHolder.appendChild(trash);
   buttonHolder.appendChild(edit);
   buttonHolder.appendChild(check);
-  trash.addEventListener('click', () => {
+  trash.addEventListener('click', (e) => {
     // Trigger modal, then give this to modal to confirm
-
+    console.log(e);
     // Get the modal
     const todoConfMod = document.querySelector('.todo-confirm-modal');
     todoConfMod.style.display = 'block';
-    const message = document.getElementById('todo-warning-message');
+    let message = document.getElementById('todo-warning-message');
     message.innerHTML = `Are you sure you want to delete '${loadedTodo.title}' todo?`;
-    message.setAttribute('id', loadedTodo.id);
+    message.setAttribute('key', loadedTodo.id);
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = (event) => {
       if (event.target === todoConfMod) {
